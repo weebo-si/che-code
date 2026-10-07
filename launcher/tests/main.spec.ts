@@ -59,6 +59,13 @@ jest.mock('../src/trusted-extensions', () => ({
   },
 }));
 
+const configureFonts = jest.fn();
+jest.mock('../src/fonts', () => ({
+  Fonts: function () {
+    return { configure: configureFonts };
+  },
+}));
+
 const readEditorConfigMapMock = jest.fn();
 jest.mock('../src/editor-configmap', () => ({
   __esModule: true,
@@ -113,6 +120,7 @@ describe('Test main flow:', () => {
     expect(configureLocalStorageKeyProvider).toBeCalled();
     expect(compressPostPatch).toBeCalled();
     expect(configureTustedExtensions).toBeCalled();
+    expect(configureFonts).toBeCalled();
 
     expect(readEditorConfigMapMock).toHaveBeenCalledTimes(1);
     expect(codeWorkspaceConstructorArgs).toEqual([[configmapData]]);
