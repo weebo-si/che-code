@@ -19,6 +19,7 @@ import { TrustedExtensions } from './trusted-extensions.js';
 import { VSCodeLauncher } from './vscode-launcher.js';
 import { WebviewResources } from './webview-resources.js';
 import { EditorConfigurations } from './editor-configurations.js';
+import { Fonts } from './fonts.js';
 
 /**
  * Mandatory environment variables:
@@ -35,6 +36,7 @@ export class Main {
     await new LocalStorageKeyProvider().configure();
     await new PostPatchCompression().compress();
     await new TrustedExtensions().configure();
+    await new Fonts().configure();
 
     const configmapData = await new EditorConfigMap().read();
     const workspaceFile = await new CodeWorkspace(configmapData).generate();

@@ -2,6 +2,12 @@
 
 The file to keep a list of changed files which will potentially help to resolve rebase conflicts.
 
+#### @batleforc
+https://github.com/weebo-si/che-code/tree/feat/container-fonts
+
+- code/src/vs/code/browser/workbench/workbench.html
+---
+
 #### @sbouchet
 https://github.com/che-incubator/che-code/pull/813
 
