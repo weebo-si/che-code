@@ -8,6 +8,74 @@ https://github.com/weebo-si/che-code/tree/feat/container-fonts
 - code/src/vs/code/browser/workbench/workbench.html
 ---
 
+#### @RomanNikitenko
+https://github.com/che-incubator/che-code/pull/823
+
+- code/extensions/copilot/src/platform/authentication/common/copilotToken.ts
+- code/extensions/copilot/src/platform/authentication/node/copilotTokenManager.ts
+- code/extensions/copilot/src/platform/authentication/test/node/copilotToken.spec.ts
+- code/extensions/copilot/src/platform/authentication/vscode-node/copilotTokenManager.ts
+- code/src/vs/workbench/contrib/chat/browser/chatSetup/chatSetupContributions.ts
+- code/src/vs/workbench/contrib/chat/browser/viewsWelcome/chatViewWelcomeController.ts
+- code/src/vs/workbench/contrib/chat/browser/widgetHosts/viewPane/chatViewPane.ts
+---
+
+#### @sbouchet
+https://github.com/che-incubator/che-code/pull/833
+
+- code/extensions/copilot/package.json
+---
+
+#### @sbouchet
+https://github.com/che-incubator/che-code/pull/835
+
+- code/package.json
+- code/remote/package.json
+- code/build/agent-sdk/agents/claude/package.json
+---
+
+#### @sbouchet
+https://github.com/che-incubator/che-code/pull/829
+
+- code/package.json
+- code/build/vite/package.json
+- code/build/rspack/package.json
+- code/extensions/copilot/package.json
+- code/extensions/copilot/chat-lib/package.json
+- code/extensions/notebook-renderers/package.json
+- code/extensions/mermaid-markdown-features/package.json
+- code/test/monaco/package.json
+---
+
+#### @sbouchet
+https://github.com/che-incubator/che-code/pull/824
+
+- code/package.json
+- code/extensions/copilot/package.json
+- code/build/agent-sdk/agents/claude/package.json
+- code/test/mcp/package.json
+---
+
+#### @sbouchet
+https://github.com/che-incubator/che-code/pull/819
+
+- code/package.json
+- code/remote/package.json
+- code/extensions/copilot/package.json
+- code/extensions/copilot/chat-lib/package.json
+- code/extensions/notebook-renderers/package.json
+---
+
+#### @sbouchet
+https://github.com/che-incubator/che-code/pull/818
+
+- code/package.json
+- code/build/package.json
+- code/extensions/copilot/package.json
+- code/build/agent-sdk/agents/claude/package.json
+- code/test/mcp/package.json
+---
+
 #### @sbouchet
 https://github.com/che-incubator/che-code/pull/813
 
