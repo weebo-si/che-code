@@ -27,3 +27,13 @@ NOTE:
 - `UBI9`-based container might contain few versions of `Node.js`
 - any version of `Node.js` can be used as default
 - the environment variable `VSCODE_NODEJS_RUNTIME_DIR` should be provided to let `che-code` know which `Node.js` should be used for running `Code-OSS`
+
+## Running `Code-OSS` without the bundled `Node.js`
+
+Set `CHECODE_EXTERNAL_NODE=true` on the init container (`che-code-injector` in the editor definition) to leave the bundled `Node.js` and its libraries (`ld_libs`) out of the copy to the `checode` volume. The IDE then runs with the `Node.js` of the dev container only:
+
+- `VSCODE_NODEJS_RUNTIME_DIR` if the dev image sets it, the `node` of the `PATH` otherwise
+- it must have the same major version as the `target` of `code/remote/.npmrc`, the native modules are built for it
+- the dev container stops with an error in `/checode/entrypoint-logs.txt` when there is no such `Node.js`, there is no fallback
+
+Point `VSCODE_NODEJS_RUNTIME_DIR` to a fixed installation directory, not to the shims of a version manager (mise, asdf, nvm): a shim picks the version from the current directory.
