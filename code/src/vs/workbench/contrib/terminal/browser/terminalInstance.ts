@@ -68,6 +68,7 @@ import { getTerminalResourcesFromDragEvent, getTerminalUri } from './terminalUri
 import { TerminalWidgetManager } from './widgets/widgetManager.js';
 import { LineDataEventAddon } from './xterm/lineDataEventAddon.js';
 import { XtermTerminal, getXtermScaledDimensions } from './xterm/xtermTerminal.js';
+import { getGhosttyConstructor } from './che/ghosttyTerminal.js';
 import { IEnvironmentVariableInfo, IEnvironmentVariableService } from '../common/environmentVariable.js';
 import { ITerminalProcessManager, ITerminalProfileResolverService, ProcessState, TERMINAL_VIEW_ID, TerminalCommandId } from '../common/terminal.js';
 import { TERMINAL_BACKGROUND_COLOR } from '../common/terminalColorRegistry.js';
@@ -809,7 +810,15 @@ export class TerminalInstance extends Disposable implements ITerminalInstance {
 	 * Create xterm.js instance and attach data listeners.
 	 */
 	protected async _createXterm(): Promise<XtermTerminal | undefined> {
-		const Terminal = await TerminalInstance.getXtermConstructor(this._keybindingService, this._contextKeyService);
+		let Terminal = await TerminalInstance.getXtermConstructor(this._keybindingService, this._contextKeyService);
+		// CHECODE: experimental engine based on ghostty-web
+		if (this._configurationService.getValue('terminal.integrated.experimental.engine') === 'ghostty') {
+			try {
+				Terminal = await getGhosttyConstructor();
+			} catch (e) {
+				this._logService.error('ghostty-web could not be loaded, using xterm.js', e);
+			}
+		}
 		if (this.isDisposed) {
 			return undefined;
 		}

@@ -1,0 +1,6 @@
+[
+    {
+        "from": "**/LICENSE\n**/CONTRIBUTORS",
+        "by": "**/LICENSE\n# CHECODE: MIT requires the notice to ship with the code\n!ghostty-web/LICENSE\n**/CONTRIBUTORS"
+    }
+]

@@ -2,5 +2,9 @@
   {
     "from": "default: 'auto',\n\t\tdescription: localize('terminal.integrated.gpuAcceleration',",
     "by": "default: 'canvas', // to fix the invisible characters issue\n\t\tdescription: localize('terminal.integrated.gpuAcceleration',"
+  },
+  {
+    "from": "\t[TerminalSettingId.TerminalTitleSeparator]: {",
+    "by": "\t// CHECODE: experimental engine based on ghostty-web\n\t'terminal.integrated.experimental.engine': {\n\t\ttype: 'string',\n\t\tenum: ['xterm', 'ghostty'],\n\t\tmarkdownEnumDescriptions: [\n\t\t\tlocalize('terminal.integrated.experimental.engine.xterm', \"The default engine, xterm.js.\"),\n\t\t\tlocalize('terminal.integrated.experimental.engine.ghostty', \"An engine based on ghostty-web. Shell integration decorations, sticky scroll, find, terminal suggestions, GPU acceleration and screen reader support are not available.\"),\n\t\t],\n\t\tdefault: 'xterm',\n\t\tmarkdownDescription: localize('terminal.integrated.experimental.engine', \"Experimental: the engine that renders new terminals. Terminals that are already open keep their engine.\")\n\t},\n\t[TerminalSettingId.TerminalTitleSeparator]: {"
   }
 ]

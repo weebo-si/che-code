@@ -14,5 +14,13 @@
   {
     "from": "\t\tif (!this._workspaceFolder) {\n\t\t\tconst activeWorkspaceRootUri = this._historyService.getLastActiveWorkspaceRoot();\n\t\t\tthis._workspaceFolder = activeWorkspaceRootUri ? this._workspaceContextService.getWorkspaceFolder(activeWorkspaceRootUri) ?? undefined : undefined;\n\t\t}\n\n\t\tconst scopedContextKeyService",
     "by": "\t\tif (!this._workspaceFolder) {\n\t\t\tconst activeWorkspaceRootUri = this._historyService.getLastActiveWorkspaceRoot();\n\t\t\tthis._workspaceFolder = activeWorkspaceRootUri ? this._workspaceContextService.getWorkspaceFolder(activeWorkspaceRootUri) ?? undefined : undefined;\n\t\t}\n\n\t\tif (!this._workspaceFolder && !this.shellLaunchConfig.cwd) {\n\t\t\tconst envs = this._environmentVariableService.collections.get('eclipse-che.api');\n\t\t\tif (envs) {\n\t\t\t\tconst projectsRoot = envs.map.get('PROJECTS_ROOT');\n\t\t\t\tif (projectsRoot) {\n\t\t\t\t\tthis.shellLaunchConfig.cwd = projectsRoot.value\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tconst scopedContextKeyService"
+  },
+  {
+    "from": "import { XtermTerminal, getXtermScaledDimensions } from './xterm/xtermTerminal.js';",
+    "by": "import { XtermTerminal, getXtermScaledDimensions } from './xterm/xtermTerminal.js';\nimport { getGhosttyConstructor } from './che/ghosttyTerminal.js';"
+  },
+  {
+    "from": "\t\tconst Terminal = await TerminalInstance.getXtermConstructor(this._keybindingService, this._contextKeyService);\n",
+    "by": "\t\tlet Terminal = await TerminalInstance.getXtermConstructor(this._keybindingService, this._contextKeyService);\n\t\t// CHECODE: experimental engine based on ghostty-web\n\t\tif (this._configurationService.getValue('terminal.integrated.experimental.engine') === 'ghostty') {\n\t\t\ttry {\n\t\t\t\tTerminal = await getGhosttyConstructor();\n\t\t\t} catch (e) {\n\t\t\t\tthis._logService.error('ghostty-web could not be loaded, using xterm.js', e);\n\t\t\t}\n\t\t}\n"
   }
 ]
