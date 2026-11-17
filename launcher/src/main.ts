@@ -11,6 +11,7 @@
 import { CodeWorkspace } from './code-workspace.js';
 import { DevWorkspaceId } from './devworkspace-id.js';
 import { EditorConfigMap } from './editor-configmap.js';
+import { Fonts } from './fonts.js';
 import { NodeExtraCertificate } from './node-extra-certificate.js';
 import { OpenVSIXRegistry } from './openvsix-registry.js';
 import { LocalStorageKeyProvider } from './local-storage-key-provider.js';
@@ -37,6 +38,7 @@ export class Main {
     await new LocalStorageKeyProvider().configure();
     await new PostPatchCompression().compress();
     await new TrustedExtensions().configure();
+    await new Fonts().configure();
 
     const configmapData = await new EditorConfigMap().read();
     const workspaceFile = await new CodeWorkspace(configmapData).generate();
