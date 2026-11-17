@@ -342,6 +342,17 @@ const terminalConfiguration: IStringDictionary<IConfigurationPropertySchema> = {
 		default: 'canvas', // to fix the invisible characters issue
 		description: localize('terminal.integrated.gpuAcceleration', "Controls whether the terminal will leverage the GPU to do its rendering.")
 	},
+	// CHECODE: experimental engine based on ghostty-web
+	'terminal.integrated.experimental.engine': {
+		type: 'string',
+		enum: ['xterm', 'ghostty'],
+		markdownEnumDescriptions: [
+			localize('terminal.integrated.experimental.engine.xterm', "The default engine, xterm.js."),
+			localize('terminal.integrated.experimental.engine.ghostty', "An engine based on ghostty-web. Shell integration decorations, sticky scroll, find, terminal suggestions, GPU acceleration and screen reader support are not available."),
+		],
+		default: 'xterm',
+		markdownDescription: localize('terminal.integrated.experimental.engine', "Experimental: the engine that renders new terminals. Terminals that are already open keep their engine.")
+	},
 	[TerminalSettingId.TerminalTitleSeparator]: {
 		'type': 'string',
 		'default': ' - ',

@@ -363,6 +363,8 @@ resolve_conflicts() {
       apply_package_changes_by_path "$conflictingFile"
     elif [[ "$conflictingFile" == "code/remote/package.json" ]]; then
       apply_package_changes_by_path "$conflictingFile"
+    elif [[ "$conflictingFile" == "code/remote/web/package.json" ]]; then
+      apply_package_changes_by_path "$conflictingFile"
     elif [[ "$conflictingFile" == "code/product.json" ]]; then
       apply_code_product_changes
     elif [[ "$conflictingFile" == "code/extensions/microsoft-authentication/package.json" ]]; then
@@ -452,6 +454,8 @@ resolve_conflicts() {
     elif [[ "$conflictingFile" == "code/extensions/npm/package.json" ]]; then
       apply_package_changes_by_path "$conflictingFile"
     elif [[ "$conflictingFile" == "code/build/.moduleignore" ]]; then
+      apply_changes_multi_line "$conflictingFile"
+    elif [[ "$conflictingFile" == "code/build/.webignore" ]]; then
       apply_changes_multi_line "$conflictingFile"
     elif [[ "$conflictingFile" == "code/build/gulpfile.reh.ts" ]]; then
       apply_changes_multi_line "$conflictingFile"

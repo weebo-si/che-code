@@ -8,6 +8,8 @@
 **/*.js.map
 **/*.mjs.map
 **/LICENSE
+# CHECODE: MIT requires the notice to ship with the code
+!ghostty-web/LICENSE
 **/CONTRIBUTORS
 
 **/docs/**
