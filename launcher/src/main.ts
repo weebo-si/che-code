@@ -11,6 +11,7 @@
 import { CodeWorkspace } from './code-workspace.js';
 import { DevWorkspaceId } from './devworkspace-id.js';
 import { EditorConfigMap } from './editor-configmap.js';
+import { Fonts } from './fonts.js';
 import { NodeExtraCertificate } from './node-extra-certificate.js';
 import { OpenVSIXRegistry } from './openvsix-registry.js';
 import { LocalStorageKeyProvider } from './local-storage-key-provider.js';
@@ -19,7 +20,6 @@ import { TrustedExtensions } from './trusted-extensions.js';
 import { VSCodeLauncher } from './vscode-launcher.js';
 import { WebviewResources } from './webview-resources.js';
 import { EditorConfigurations } from './editor-configurations.js';
-import { Fonts } from './fonts.js';
 
 /**
  * Mandatory environment variables:
