@@ -2,16 +2,6 @@
 
 The file to keep a list of changed files which will potentially help to resolve rebase conflicts.
 
-#### @batleforc
-https://github.com/weebo-si/che-code/tree/feat/ghostty-terminal
-
-- code/package.json
-- code/remote/web/package.json
-- code/build/.webignore
-- code/src/vs/workbench/contrib/terminal/browser/terminalInstance.ts
-- code/src/vs/workbench/contrib/terminal/common/terminalConfiguration.ts
----
-
 #### @sbouchet
 https://github.com/che-incubator/che-code/pull/813
 
@@ -21,6 +11,16 @@ https://github.com/che-incubator/che-code/pull/813
 - code/test/sanity/package.json
 - code/extensions/copilot/package.json
 - code/extensions/npm/package.json
+---
+
+#### @batleforc
+https://github.com/weebo-si/che-code/tree/feat/ghostty-terminal
+
+- code/package.json
+- code/remote/web/package.json
+- code/build/.webignore
+- code/src/vs/workbench/contrib/terminal/browser/terminalInstance.ts
+- code/src/vs/workbench/contrib/terminal/common/terminalConfiguration.ts
 ---
 
 #### @sbouchet
