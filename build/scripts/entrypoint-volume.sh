@@ -109,7 +109,8 @@ case "$ldd_output" in
   ;;
 esac
 
-if [ -n "$runtime_ld_library_path" ]; then
+# Without the bundled Node.js (CHECODE_EXTERNAL_NODE), there is no ld_libs to add
+if [ -n "$runtime_ld_library_path" ] && [ -e ./node ]; then
   export LD_LIBRARY_PATH="${runtime_ld_library_path}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
   echo "[INFO] LD_LIBRARY_PATH is: $LD_LIBRARY_PATH"
 fi
@@ -126,7 +127,22 @@ export LD_SANITIZE_SCOPE="${LD_SANITIZE_SCOPE:-terminal}"
 export MACHINE_EXEC_PORT=3333
 nohup ./machine-exec --url "127.0.0.1:${MACHINE_EXEC_PORT}" &
 
-if [ -z "$VSCODE_NODEJS_RUNTIME_DIR" ]; then
+if [ ! -e ./node ]; then
+  # The init container ran with CHECODE_EXTERNAL_NODE=true: the assembly has no Node.js, the dev
+  # container must provide one with the same major version (the native modules depend on it).
+  if [ -z "$VSCODE_NODEJS_RUNTIME_DIR" ]; then
+    node_bin=$(command -v node) || node_bin=""
+    VSCODE_NODEJS_RUNTIME_DIR="${node_bin%/node}"
+  fi
+  export VSCODE_NODEJS_RUNTIME_DIR
+  required=$(cat /checode/.checode.node-version)
+  actual=$("$VSCODE_NODEJS_RUNTIME_DIR/node" -p 'process.versions.node' 2>/dev/null) || actual=""
+  if [ "${actual%%.*}" != "${required%%.*}" ]; then
+    echo "[ERROR] CHECODE_EXTERNAL_NODE is set on the che-code init container: Node.js ${required%%.*}.x is required in the dev container, found '${actual:-none}' in '${VSCODE_NODEJS_RUNTIME_DIR:-PATH}'."
+    echo "[ERROR] Install Node.js ${required%%.*} in the dev image and set VSCODE_NODEJS_RUNTIME_DIR to its bin directory, or unset CHECODE_EXTERNAL_NODE."
+    exit 1
+  fi
+elif [ -z "$VSCODE_NODEJS_RUNTIME_DIR" ]; then
   export VSCODE_NODEJS_RUNTIME_DIR="$(pwd)"
 fi
 

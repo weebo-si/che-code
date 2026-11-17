@@ -43,6 +43,10 @@ RUN cd /mnt/rootfs \
     && version=$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' checode-linux-libc/ubi9/package.json | head -1) \
     && hash=$(find checode-linux-musl checode-linux-libc -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1) \
     && printf '%s-%s' "$version" "$hash" > checode.version
+# Node.js version of the assemblies, checked by entrypoint-volume.sh when the dev container provides Node.js
+COPY code/remote/.npmrc /tmp/remote.npmrc
+RUN sed -n 's/^target="\(.*\)"/\1/p' /tmp/remote.npmrc > /mnt/rootfs/checode.node-version \
+    && test -s /mnt/rootfs/checode.node-version
 COPY --chmod=755 /build/scripts/*.sh /mnt/rootfs/
 COPY --chmod=755 /build/remote-config /mnt/rootfs/remote/data/Machine/
 
